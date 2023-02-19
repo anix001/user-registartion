@@ -11,13 +11,12 @@ import java.time.ZonedDateTime;
 @ControllerAdvice
 public class ApiExceptionHandler{
 
-    @ExceptionHandler(value = {ApiRequestException.class})
+    @ExceptionHandler(ApiRequestException.class  )
     public ResponseEntity<Object> handleApiRequestException(ApiRequestException e){
         HttpStatus badRequest = HttpStatus.BAD_REQUEST;
         //1.create payload containing exception detail
         ApiException apiException = new ApiException(
                 e.getMessage(),
-                e,
                 badRequest,
                 ZonedDateTime.now(ZoneId.of("Z"))
         );
